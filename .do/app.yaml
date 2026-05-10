@@ -1,16 +1,19 @@
-name: template-discord-bot-worker
+name: ml-javascript-analyzer
 workers:
-- name: worker
+- name: analyzer
   environment_slug: python
   github:
-    repo: digitalocean/template-discord-bot-worker
-    branch: main
+    repo: hirepentester/Javascript
+    branch: deploy
     deploy_on_push: true
   source_dir: /
   build_command: "pip install -r requirements.txt"
-  run_command: "python discord_bot.py"
+  run_command: "python ml_analyzer.py --analyze-all"
   instance_count: 1
   envs:
-    - key: DISCORD_TOKEN
-      value: <REQUIRED>
-      type: SECRET
+    - key: PROCESSING_MODE
+      value: batch
+    - key: BATCH_SIZE
+      value: "32"
+    - key: LOG_LEVEL
+      value: INFO

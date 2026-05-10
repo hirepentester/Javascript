@@ -43,6 +43,3 @@ pytest-cov==4.1.0
 # Data Formats
 parquet-tools==0.2.14
 openpyxl==3.1.2
-
-# Discord (existing)
-discord.py==2.5.2
