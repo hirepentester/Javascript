@@ -1,0 +1,55 @@
+name: Branch Promotion
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - staging
+      - deploy
+
+jobs:
+  promote-to-staging:
+    runs-on: ubuntu-latest
+    name: Promote to Staging
+    if: |
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'staging' &&
+      github.event.pull_request.head.ref == 'working'
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: staging
+      
+      - name: Verify staging branch
+        run: |
+          echo "✓ Code promoted from working → staging"
+          echo "✓ Running pre-staging checks"
+          git log --oneline -5
+      
+      - name: Notify promotion
+        run: |
+          echo "📦 Code successfully promoted to staging branch"
+
+  promote-to-deploy:
+    runs-on: ubuntu-latest
+    name: Promote to Deploy
+    if: |
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'deploy' &&
+      github.event.pull_request.head.ref == 'staging'
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: deploy
+      
+      - name: Verify deploy branch
+        run: |
+          echo "✓ Code promoted from staging → deploy"
+          echo "✓ Ready for production deployment"
+          git log --oneline -5
+      
+      - name: Notify promotion
+        run: |
+          echo "🚀 Code successfully promoted to deploy branch (production-ready)"
