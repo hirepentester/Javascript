@@ -6,7 +6,7 @@ scikit-learn==1.3.1
 scipy==1.11.2
 
 # JavaScript Analysis & AST Parsing
-esprima==0.4.1
+esprima==4.0.1
 js2py==0.74
 node2python==1.0.1
 
