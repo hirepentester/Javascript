@@ -1,5 +1,6 @@
-## Digitalocean Template Repos
-This repository contains a template for a background worker process suitable for running a Discord bot.
+# ML JavaScript Analyzer
+
+A machine learning-based system for analyzing JavaScript code in bulk, extracting metrics, detecting security vulnerabilities, identifying patterns, and classifying code quality using TensorFlow.
 
 <img src="media/Demo.gif" width="600"/> 
 
@@ -8,21 +9,49 @@ This repository contains a template for a background worker process suitable for
 ### Requirements
 
 * You need a DigitalOcean account. If you do not already have one, first [sign up](https://cloud.digitalocean.com/registrations/new).
-* You need to have created and configured a discord bot on the [Discord Developer Portal](https://discord.com/developers/applications).
+* Python 3.8 or higher
+* TensorFlow and machine learning dependencies (see requirements.txt)
 
-## Deploying the App
+## Quick Start
 
-Click this button to deploy the app to the DigitalOcean App Platform. If you are not logged in, you will be prompted to log in with your DigitalOcean account.
+See [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed setup instructions.
 
-[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/digitalocean/template-discord-bot-worker/tree/main)
+### Fast Setup
 
-Using this button disables the ability to automatically re-deploy your app when pushing to a branch or tag in your repository as you are using this repo directly.
+```bash
+# Install dependencies
+pip install -r requirements.txt
 
-## How to Create and Configure a discord bot.
-- Go to the Discord Developer Portal and add a new application. Go to the "Bot" settings and copy the token to use as your **DISCORD_TOKEN**.
-- Under Bot Permissions, select the Text Permissions that you would like to allow for the bot. Enable "Message Content Intent".
-- Go to OAuth2 settings and select "bot" from the Scopes. Again under Bot Permissions, select the Text Permissions that you would like to allow for the bot.
-- At the bottom, copy the Generated URL and paste it into a new tab. Select the server you want to add the bot to and this will allow the bot to connect to your server.
+# Configure environment
+cp .env.example .env
+
+# Run analysis
+python ml_analyzer.py --directory ./data/input --analyze-all
+```
+
+## Features
+
+- **Comprehensive Code Analysis**: Extract 50+ features from JavaScript files
+- **Security Detection**: Identify vulnerabilities (eval, XSS, SQL injection, etc.)
+- **Code Quality Classification**: Score code on 0-100 scale
+- **ML-Powered Insights**: TensorFlow neural networks for pattern recognition
+- **Flexible Processing**: Batch, stream, or hybrid processing modes
+- **Multi-Project Support**: Analyze different projects with separate configurations
+- **Environment Configuration**: All settings managed via .env file
+- **CI/CD Integration**: GitHub Actions workflows included
+
+## Deploying to DigitalOcean
+
+Click this button to deploy to DigitalOcean App Platform:
+
+[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/hirepentester/Javascript/tree/deploy)
+
+## Documentation
+
+- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Complete setup and configuration guide
+- **[ML_README.md](ML_README.md)** - Technical documentation
+- **[BRANCHING_STRATEGY.md](BRANCHING_STRATEGY.md)** - Git workflow and CI/CD pipeline
+- **[examples.py](examples.py)** - Working code examples
 
 ## Learn More
 
@@ -32,7 +61,7 @@ To learn more about App Platform and how to manage and update your application, 
 
 When you no longer need this sample application running live, you can delete it by following these steps:
 1. Visit the [Apps control panel](https://cloud.digitalocean.com/apps).
-2. Navigate to the sample app.
+2. Navigate to the ML Analyzer app.
 3. In the **Settings** tab, click **Destroy**.
 
 **Note**: If you do not delete your app, charges for using DigitalOcean services will continue to accrue.
