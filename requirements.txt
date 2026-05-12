@@ -8,7 +8,6 @@ scipy==1.13.0
 # JavaScript Analysis & AST Parsing
 esprima==4.0.1
 js2py==0.74
-node2python==1.0.1
 
 # Code Quality & Security Analysis
 pylint==3.1.0
